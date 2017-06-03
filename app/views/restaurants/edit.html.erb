@@ -1,0 +1,32 @@
+<h1>Edit</h1>
+
+<%= form_for @restaurant, url: restaurant_path(@restaurant) do |f| %>
+<p>
+<%=f.label :name %><br>
+<%=f.text_field :name %>
+</p>
+
+<p>
+<%= f.label :phone %><br>
+<%= f.text_area :phone %>
+</p>
+
+<p>
+<%= f.label :address %><br>
+<%= f.text_area :address %>
+</p>
+
+
+<p>
+<%= f.label :genre %><br>
+<%= f.text_area :genre %>
+</p>
+
+<p>
+<%= f.submit %>
+</p>
+<% end %>
+
+<p>
+<%= link_to 'Back',restaurants_path %>
+</p>
