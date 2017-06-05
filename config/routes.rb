@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 	
+  devise_for :owners
 	get 'restaurants/index'
   	root 'restaurants#index'
  	get 'restaurants' => 'restaurants#index'
