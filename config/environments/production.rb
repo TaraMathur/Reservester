@@ -88,4 +88,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Needed for Heroku.  Change host when in production!
+  config.action_mailer.deafult_url_options = {:host => 'localhost:3000'}
+
 end

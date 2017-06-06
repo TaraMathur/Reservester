@@ -1,9 +1,14 @@
 class RestaurantsController < ApplicationController
+	before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_owner!, except: [:index, :show]
+
 	def new #restaurants/index.html
 	end
 
 	def create
-		@restaurant = Restaurant.new(params.require(:restaurant).permit(:name, :phone, :address, :genre))
+		@restaurant = current.owner.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre))
+
+		@restaurant.owner = current_owner
 		if @restaurant.save
 			redirect_to @restaurant #restaurants/id (shows)
 		else
@@ -38,5 +43,15 @@ class RestaurantsController < ApplicationController
 		@restaurants = Restaurant.all
 	end
 
+private
+def set_restaurant
+	@restaurant = Restaurant.find(params[:id])
+end
+
+def check_owner
+	if restaurant.owner != current_owner 
+		redirect_to(restaurants_url, notice: 'This is not your restaurant.')
+	end
+end
 
 end
