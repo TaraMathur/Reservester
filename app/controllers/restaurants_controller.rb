@@ -1,12 +1,13 @@
 class RestaurantsController < ApplicationController
 	before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_owner!, except: [:index, :show]
+	before_action :check_owner
 
 	def new #restaurants/index.html
 	end
 
 	def create
-		@restaurant = current.owner.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre))
+		@restaurant = current_owner.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre))
 
 		@restaurant.owner = current_owner
 		if @restaurant.save
@@ -17,7 +18,6 @@ class RestaurantsController < ApplicationController
 	end
 
 	def edit
-		#i'm getting an error here
 		@restaurant = Restaurant.find(params[:id])
 	end
 
@@ -49,9 +49,8 @@ def set_restaurant
 end
 
 def check_owner
-	if restaurant.owner != current_owner 
-		redirect_to(restaurants_url, notice: 'This is not your restaurant.')
+	if @restaurant
+		redirect_to :restaurants if(@restaurant.owner!=current_owner) end
+		#notice: 'This is not your restaurant.'
 	end
-end
-
 end

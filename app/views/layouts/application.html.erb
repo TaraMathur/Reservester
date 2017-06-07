@@ -13,7 +13,6 @@
   <% if owner_signed_in? %>
   	<%=link_to current_owner.email, edit_owner_registration_path %>
   	<%= link_to 'Logout', destroy_owner_session_path, method: :delete, data: {confirm: 'Sure?'} %>
-  	<%= link_to 'New Restaurant',new_restaurant_path %>
   <% else %>
   	<%= link_to 'Login', new_owner_session_path %>
   	<%= link_to 'Sign up',new_owner_registration_path %><br>
