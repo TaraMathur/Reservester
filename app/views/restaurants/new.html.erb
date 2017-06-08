@@ -1,4 +1,6 @@
-<%= form_for :restaurant, url: restaurants_path do |f| %>
+<h1>New</h1>
+
+<%= form_for @restaurant, url: restaurants_path do |f| %>
 <p>
 <%=f.label :name %><br>
 <%=f.text_field :name %>
@@ -18,6 +20,10 @@
 <p>
 <%= f.label :genre %><br>
 <%= f.text_area :genre %>
+</p>
+
+<p>
+<%= f.file_field :photo %>
 </p>
 
 <p>

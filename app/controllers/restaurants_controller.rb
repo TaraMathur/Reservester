@@ -4,10 +4,11 @@ class RestaurantsController < ApplicationController
 	before_action :check_owner
 
 	def new #restaurants/index.html
+		@restaurant = Restaurant.new
 	end
 
 	def create
-		@restaurant = current_owner.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre))
+		@restaurant = current_owner.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre, :photo))
 
 		@restaurant.owner = current_owner
 		if @restaurant.save
@@ -28,7 +29,7 @@ class RestaurantsController < ApplicationController
 
 	def update
 		@restaurant = Restaurant.find(params[:id])
-		if @restaurant.update(params.require(:restaurant).permit(:name,:phone,:address,:genre))
+		if @restaurant.update(params.require(:restaurant).permit(:name,:phone,:address,:genre, :photo))
 			redirect_to @restaurant
 		else
 			render 'edit'
@@ -50,7 +51,6 @@ end
 
 def check_owner
 	if @restaurant
-		redirect_to :restaurants if(@restaurant.owner!=current_owner) end
-		#notice: 'This is not your restaurant.'
+		redirect_to :restaurants, notice: 'This is not your restaurant!' if(@restaurant.owner!=current_owner) end
 	end
 end

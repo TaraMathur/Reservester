@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606210604) do
+ActiveRecord::Schema.define(version: 20170607014106) do
 
   create_table "owners", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(version: 20170606210604) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
 end
