@@ -41,7 +41,11 @@ class RestaurantsController < ApplicationController
 	end
 
 	def index
-		@restaurants = Restaurant.all
+		if current_owner
+			@restaurants = current_owner.restaurants
+		else
+			@restaurants = Restaurant.all
+		end
 	end
 
 private
@@ -51,6 +55,6 @@ end
 
 def check_owner
 	if @restaurant
-		redirect_to :restaurants, notice: 'This is not your restaurant!' if(@restaurant.owner!=current_owner) end
+		redirect_to :restaurants, notice: 'This is not your restaurant.' if(@restaurant.owner!=current_owner) end
 	end
 end
