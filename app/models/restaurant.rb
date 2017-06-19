@@ -5,6 +5,6 @@ class Restaurant < ApplicationRecord
 	validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 	has_many :reservations
-	validates :user, presence: true
+#	validates :user, presence: true
 end
 

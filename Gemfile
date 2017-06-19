@@ -64,3 +64,5 @@ gem 'devise'
 gem 'paperclip'
 
 gem 'bootstrap-sass'
+
+gem 'sendgrid-ruby'

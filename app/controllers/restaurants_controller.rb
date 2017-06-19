@@ -48,6 +48,11 @@ class RestaurantsController < ApplicationController
 		end
 	end
 
+def dashboard
+	@restaurants = current_owner.restaurants
+	render 'index'
+end
+
 private
 def set_restaurant
 	@restaurant = Restaurant.find(params[:id])

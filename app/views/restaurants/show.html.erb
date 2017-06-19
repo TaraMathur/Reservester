@@ -33,6 +33,7 @@
 		<tr>
 		<td><%= reservation.user %></td>
 		<td><%= reservation.time %></td>
+		<td><%= link_to 'Delete', restaurant_reservation_path(reservation), :method => :delete, data: { confirm: 'Are you sure you want to delete?' }%></td>
 		</tr>
 		<%end%>
 </table>
