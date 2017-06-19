@@ -1,0 +1,16 @@
+<h1>Make a New Reservation</h1>
+
+<%= form_for([@restaurant, @restaurant.reservations.build]) do |f| %>
+  <p>
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </p>
+
+  <p>
+    <%= f.label :time %><br>
+    <%= f.time_select :time, :minute_step => 15, :ampm => true %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

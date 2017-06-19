@@ -22,22 +22,8 @@
 <%= image_tag @restaurant.photo.url %>
 </p>
 
-<! Only show Current Reservations to owners >
-<h2>Current Reservations</h2>
-<table>
-	<tr>
-		<th>User</th>	
-		<th>Time</th>
-	</tr>
-	<% @restaurant.reservations.each do |reservation| %>
-		<tr>
-		<td><%= reservation.user %></td>
-		<td><%= reservation.time %></td>
-		<td><%= link_to 'Delete', restaurant_reservation_path(reservation), :method => :delete, data: { confirm: 'Are you sure you want to delete?' }%></td>
-		</tr>
-		<%end%>
-</table>
 
+<% if !current_owner %>
 <h2>Make a reservation:</h2>
 <%= form_for([@restaurant, @restaurant.reservations.build]) do |f| %>
   <p>
@@ -46,12 +32,13 @@
   </p>
   <p>
     <%= f.label :time %><br>
-    <%= f.text_area :time %>
+    <%= f.time_select :time, :minute_step => 15, :ampm => true %>
   </p>
   <p>
     <%= f.submit %>
   </p>
 <% end %>
+<%end%>
 
 <p>
 <%= link_to 'Back',restaurants_path %>

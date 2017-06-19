@@ -41,6 +41,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def index
+		@current_owner = current_owner
 		if current_owner
 			@restaurants = current_owner.restaurants
 		else

@@ -14,14 +14,20 @@
 		<td><%= restaurant.address %></td>
 		<td><%= restaurant.phone %></td>
 		<td><%= restaurant.genre %></td>
-		<td><%= link_to 'Show',restaurant_path(restaurant) %></td>
-		<td><%= link_to 'Edit',edit_restaurant_path(restaurant) %></td>
+		<td><%= link_to 'Details',restaurant_path(restaurant) %></td>
+	<% if @current_owner %>
+		<td><%= link_to 'Update',edit_restaurant_path(restaurant) %></td>
 		<td><%= link_to 'Delete', restaurant_path(restaurant), :method => :delete, data: { confirm: 'Are you sure you want to delete?' }%></td>
-		<td><%= link_to 'Reserve',restaurant_path(restaurant)%></td>
+		<td><%= link_to 'Review Reservations', restaurant_reservations_path(restaurant)%></td>
+	<% else %>
+		<td><%= link_to 'Reserve', new_restaurant_reservation_path(restaurant)%></td>
+	<% end %>
 		</tr>
 
 		<%end%>
 </table>
 <br>
 
-<%= link_to 'New Restaurant',new_restaurant_path %>
+<% if @current_owner %>
+	<%= link_to 'New Restaurant',new_restaurant_path %>
+<%end%>
