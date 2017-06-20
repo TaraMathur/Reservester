@@ -10,7 +10,12 @@
 		<td><%= reservation.user %></td>
 		<td><%= "July 1st, 2017" %></td>
 		<td><%= reservation.time %></td>
+		<! this one isn't working yet>
 		<td><%= link_to 'Reject', restaurant_reservations_path(reservation)%></td>
 		</tr>
 		<%end%>
 </table>
+
+<p>
+<%= link_to 'Back',restaurants_path %>
+</p>

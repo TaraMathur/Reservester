@@ -1,4 +1,7 @@
 <h1>Registration confirmed.</h1>
 
-<h2>Your registration at <%= @restaurant %> has been made.  You will receive an email soon.</h2>
+<h2>Your registration at <%= @restaurant.name %> has been made for @reservation.time.  You will receive an email once it has been approved.</h2>
 
+<p>
+<%= link_to 'Back',restaurants_path %>
+</p>
