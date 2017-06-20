@@ -1,4 +1,4 @@
-<h2>Current Reservations for <%= @restaurant %></h2>
+<h2>Current Reservations for <%= @restaurant.name %></h2>
 <table>
 	<tr>
 		<th>User</th>
@@ -8,10 +8,9 @@
 	<% @restaurant.reservations.each do |reservation| %>
 		<tr>
 		<td><%= reservation.user %></td>
-		<td><%= "July 1st, 2017" %></td>
-		<td><%= reservation.time %></td>
+		<td><%= reservation.datetime %></td>
 		<! this one isn't working yet>
-		<td><%= link_to 'Reject', restaurant_reservations_path(reservation)%></td>
+		<td><%= link_to 'Reject', restaurant_reservations_path(restaurant: @restaurant, reservation: reservation)%></td>
 		</tr>
 		<%end%>
 </table>
