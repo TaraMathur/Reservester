@@ -1,6 +1,6 @@
 <h1>Welcome to Reservester</h1>
 <% if current_user %>
-	<% if current_user.role == "owner" %>
+	<% if current_user.is_owner? %>
 	 <%= link_to 'Restaurant user',dashboard_path %>
 	<% else %>
  	<%= link_to 'Restaurant Eater',restaurants_path %>

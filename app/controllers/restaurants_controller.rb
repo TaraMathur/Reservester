@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
 	before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :check_user
+#	before_action :check_user
 
 	def new #restaurants/index.html
 		@restaurant = Restaurant.new
@@ -42,7 +42,8 @@ class RestaurantsController < ApplicationController
 
 	def index
 		@current_user = current_user
-		if current_user
+
+		if current_user && current_user.is_owner?
 			@restaurants = current_user.restaurants
 		else
 			@restaurants = Restaurant.all
@@ -50,6 +51,7 @@ class RestaurantsController < ApplicationController
 	end
 
 def dashboard
+	byebug
 	@restaurants = current_user.restaurants
 	render 'index'
 end
