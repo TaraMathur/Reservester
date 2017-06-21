@@ -6,5 +6,6 @@ class Restaurant < ApplicationRecord
 
 	has_many :reservations
 #	validates :user, presence: true
+
 end
 

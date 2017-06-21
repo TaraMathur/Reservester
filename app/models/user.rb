@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
    has_many :restaurants
+
+def is_owner?
+	role == "owner"
+end
+
 end
