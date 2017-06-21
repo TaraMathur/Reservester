@@ -19,11 +19,16 @@
 </p>
 
 <p>
+<strong>user</strong>
+<%= @restaurant.user %>
+</p>
+
+<p>
 <%= image_tag @restaurant.photo.url %>
 </p>
 
 
-<% if !current_owner %>
+<% if !current_user %>
 <h2>Make a reservation:</h2>
 <%= form_for([@restaurant, @restaurant.reservations.build]) do |f| %>
   <p>

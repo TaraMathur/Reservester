@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation = @restaurant.reservations.create(reservation_params)
      # Tell the UserMailer to send a welcome email after save
-        UserMailer.reservation_confirmation_email(@restaurant,@reservation).deliver_later
+        OwnerMailer.reservation_confirmation_email(@restaurant,@reservation).deliver_later
 #     redirect_to restaurant_reservation_path(@restaurant)
 #    redirect_to restaurant_path(@restaurant)
 	confirm(@restaurant,@reservation)

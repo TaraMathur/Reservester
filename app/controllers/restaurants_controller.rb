@@ -1,16 +1,16 @@
 class RestaurantsController < ApplicationController
 	before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_owner!, except: [:index, :show]
-	before_action :check_owner
+	before_action :authenticate_user!, except: [:index, :show]
+	before_action :check_user
 
 	def new #restaurants/index.html
 		@restaurant = Restaurant.new
 	end
 
 	def create
-		@restaurant = current_owner.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre, :photo))
+		@restaurant = current_user.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre, :photo))
 
-		@restaurant.owner = current_owner
+		@restaurant.user = current_user
 		if @restaurant.save
 			redirect_to @restaurant #restaurants/id (shows)
 		else
@@ -41,16 +41,16 @@ class RestaurantsController < ApplicationController
 	end
 
 	def index
-		@current_owner = current_owner
-		if current_owner
-			@restaurants = current_owner.restaurants
+		@current_user = current_user
+		if current_user
+			@restaurants = current_user.restaurants
 		else
 			@restaurants = Restaurant.all
 		end
 	end
 
 def dashboard
-	@restaurants = current_owner.restaurants
+	@restaurants = current_user.restaurants
 	render 'index'
 end
 
@@ -59,8 +59,8 @@ def set_restaurant
 	@restaurant = Restaurant.find(params[:id])
 end
 
-def check_owner
+def check_user
 	if @restaurant
-		redirect_to :restaurants, notice: 'This is not your restaurant.' if(@restaurant.owner!=current_owner) end
+		redirect_to :restaurants, notice: 'This is not your restaurant.' if(@restaurant.user!=current_user) end
 	end
 end
