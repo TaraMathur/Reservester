@@ -40,6 +40,12 @@ group :development, :test do
   gem 'selenium-webdriver'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
+  gem 'rails-controller-testing'
+  gem 'vcr'
 end
 
 group :production do
@@ -64,5 +70,7 @@ gem 'devise'
 gem 'paperclip'
 
 gem 'bootstrap-sass'
+
+gem 'geocoder'
 
 gem 'sendgrid-ruby'

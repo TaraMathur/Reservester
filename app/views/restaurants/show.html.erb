@@ -24,25 +24,45 @@
 </p>
 
 <p>
+<strong>Total number of favorites:</strong>
+<%= @restaurant.favoritors.size%>
+</p>
+
+<p>
+<% if current_user %>
+ 	<% if Favorite.exists?(restaurant: @restaurant, user: current_user) %>
+ 		<%= link_to "Unfavorite", favorite_restaurant_path(@restaurant, type: "unfavorite"), method: :put, remote: true%>
+	<% else %>
+		<%= link_to "Favorite", favorite_restaurant_path(@restaurant, type: "favorite"), method: :put, remote: true%>
+	<% end %>
+<% end %>
+</p>
+
+<p>
 <!<%= image_tag @restaurant.photo.url %>
 </p>
 
+<td><%= image_tag @restaurant.google_map(center: @restaurant.address) %></td>
 
 <% if !current_user %>
-<h2>Make a reservation:</h2>
-<%= form_for([@restaurant, @restaurant.reservations.build]) do |f| %>
-  <p>
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </p>
-  <p>
-    <%= f.label :datetime %><br>
-    <%= f.datetime_select :datetime, :minute_step => 15%>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+	<h2>Make a reservation:</h2>
+	<%= form_for([@restaurant, @restaurant.reservations.build]) do |f| %>
+	  <p>
+	    <%= f.label :user %><br>
+	    <%= f.text_field :user %>
+	  </p>
+	  <p>
+	    <%= f.label :datetime %><br>
+	    <%= f.datetime_select :datetime, :minute_step => 15%>
+	  </p>
+	  <p>
+	    <%= f.submit %>
+	  </p>
 <% end %>
+
+
+
+
 <%end%>
 
 <p>

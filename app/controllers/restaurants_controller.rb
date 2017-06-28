@@ -8,7 +8,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		@restaurant = current_user.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre, :photo))
+		@restaurant = current_user.restaurants.new(params.require(:restaurant).permit(:name, :phone, :address, :genre, :photo, :favorite))
 
 		@restaurant.user = current_user
 		if @restaurant.save
@@ -29,7 +29,7 @@ class RestaurantsController < ApplicationController
 
 	def update
 		@restaurant = Restaurant.find(params[:id])
-		if @restaurant.update(params.require(:restaurant).permit(:name,:phone,:address,:genre, :photo))
+		if @restaurant.update(params.require(:restaurant).permit(:name,:phone,:address,:genre, :photo, :favorite))
 			redirect_to @restaurant
 		else
 			render 'edit'
@@ -51,9 +51,21 @@ class RestaurantsController < ApplicationController
 	end
 
 def dashboard
-	byebug
 	@restaurants = current_user.restaurants
 	render 'index'
+end
+
+def favorite
+	byebug
+
+  @restaurant = Restaurant.find(params[:id])
+  if params[:type] == "favorite"
+      Favorite.create(restaurant: @restaurant, user: current_user)
+      redirect_to @restaurant, notice: "Restaurant Favorited!"
+    else
+      @restaurant.favoritors.delete(current_user)
+      redirect_to @restaurant, notice: "Restaurant Unfavorited :c"
+    end
 end
 
 private

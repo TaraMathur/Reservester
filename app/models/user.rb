@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
    has_many :restaurants
+   has_many :favorites
+   has_many :favorite_restaurants, source: :restaurant, through: :favorites
 
 def is_owner?
 	role == "owner"

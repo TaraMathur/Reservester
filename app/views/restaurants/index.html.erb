@@ -21,10 +21,20 @@
 		<td><%= link_to 'Review Reservations', restaurant_reservations_path(restaurant)%></td>
 	<% else %>
 		<td><%= link_to 'Reserve', new_restaurant_reservation_path(restaurant)%></td>
-	<% end %>
-		</tr>
 
-		<%end%>
+   		<% if current_user.present? %>
+			<td><%= link_to "Favorite", favorite_restaurant_path(restaurant), method: :put, remote: true%></td>
+ 			<% if Favorite.exists?(restaurant: restaurant, user: current_user) %>
+ 				<%= link_to "Unfavorite", favorite_restaurant_path(restaurant, type: "unfavorite"), method: :put, remote: true%>
+			<% else %>
+				<td><%= link_to "Favorite", favorite_restaurant_path(restaurant, type: "favorite"), method: :put, remote: true%></td>
+			<% end %>
+  		<% end %>
+
+	<% end %>
+	</tr>
+
+	<%end%>
 </table>
 <br>
 

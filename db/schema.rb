@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621004214) do
+ActiveRecord::Schema.define(version: 20170627170429) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "restaurant_id"
+    t.integer "user_id"
+    t.index ["restaurant_id"], name: "index_favorites_on_restaurant_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "reservations", force: :cascade do |t|
     t.string "user"
@@ -33,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170621004214) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
