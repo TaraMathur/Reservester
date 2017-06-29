@@ -71,6 +71,8 @@ gem 'paperclip'
 
 gem 'bootstrap-sass'
 
+gem 'jquery-rails'
+
 gem 'geocoder'
 
 gem 'sendgrid-ruby'

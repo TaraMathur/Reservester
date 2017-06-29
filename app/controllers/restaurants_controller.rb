@@ -50,14 +50,17 @@ class RestaurantsController < ApplicationController
 		end
 	end
 
-def dashboard
+def owner_dashboard
 	@restaurants = current_user.restaurants
 	render 'index'
 end
 
-def favorite
-	byebug
+def user_dashboard
+	@restaurants = current_user.favorite_restaurants
+	render 'user_dashboard'
+end
 
+def favorite
   @restaurant = Restaurant.find(params[:id])
   if params[:type] == "favorite"
       Favorite.create(restaurant: @restaurant, user: current_user)

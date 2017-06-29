@@ -1,7 +1,7 @@
 <h1>Welcome to Reservester</h1>
 <% if current_user %>
 	<% if current_user.is_owner? %>
-	 <%= link_to 'Restaurant user',dashboard_path %>
+	 <%= link_to 'Restaurant Owner',owner_dashboard_path %>
 	<% else %>
  	<%= link_to 'Restaurant Eater',restaurants_path %>
  	<% end %>

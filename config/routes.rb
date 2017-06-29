@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 	get 'restaurants/index'
 	root 'restaurants#index'
 	get 'restaurants' => 'restaurants#index'
-	get 'dashboard' => 'restaurants#dashboard'
+	get 'owner_dashboard' => 'restaurants#owner_dashboard'
+	get 'user_dashboard' => 'restaurants#user_dashboard'
 
-   
 
  	resources :restaurants do
  		resources :reservations
