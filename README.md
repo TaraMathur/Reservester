@@ -1,24 +1,15 @@
-# README
+# README - Reservester
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to the Reservester app, whose functionality will look familiar if you've ever used Open Table.
 
-Things you may want to cover:
+FEATURES
 
-* Ruby version
+- Reservations (one to many relationship)
+- User login (Devise)
+- User and Owner dashboard
+- Favorites
+- Static Google maps
+- File attachments (Paperclip)
+- Captcha validation
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I've also pushed this app live on Heroku.
