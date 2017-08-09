@@ -13,3 +13,6 @@ ActionMailer::Base.smtp_settings = {
   :authentication => :plain,
   :enable_starttls_auto => true
 }
+
+ENV['RECAPTCHA_PUBLIC_KEY']  = '6LfWRycUAAAAAOMwc2tlePOLsyZ4Nos9aIAcxq7m'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfWRycUAAAAAANlbXcOxVH_GpfkcjeBF0VUYoB0'

@@ -76,3 +76,6 @@ gem 'jquery-rails'
 gem 'geocoder'
 
 gem 'sendgrid-ruby'
+
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+gem "recaptcha", require: "recaptcha/rails"

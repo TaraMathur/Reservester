@@ -12,11 +12,14 @@
     <%= f.datetime_select :datetime, :minute_step => 15%>
   </p>
 
+  <div class="g-recaptcha" data-sitekey="6LfWRycUAAAAAOMwc2tlePOLsyZ4Nos9aIAcxq7m"></div>
+
   <p>
-    <%= f.submit %>
+  <%= f.submit %>
   </p>
 <% end %>
 
 <p>
 <%= link_to 'Back',restaurants_path %>
 </p>
+<script src='https://www.google.com/recaptcha/api.js'></script>
